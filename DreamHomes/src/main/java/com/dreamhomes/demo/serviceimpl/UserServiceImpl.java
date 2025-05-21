@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
 		//throw new UserNotFoundException("Incorrect id : ");
 	}
 	@Override
-    public User deleteUser(Integer id) {
+	public User deleteUser(Integer id) {
     	User user = userRepo.findById(id).get();
 		if(user != null){
 			userRepo.delete(user); 

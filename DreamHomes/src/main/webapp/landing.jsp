@@ -16,8 +16,8 @@
     <div class="logo">Dream Homes</div>
     <ul class="nav-links">
       <li><a href="/view/landing">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/view/about">About</a></li>
+      <li><a href="/view/contact">Contact</a></li>
       <li><a href="/view/login">Login</a></li>
       <li><a href="/view/register">Register</a></li>
     </ul>

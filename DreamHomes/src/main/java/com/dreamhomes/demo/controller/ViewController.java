@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dreamhomes.demo.entity.Property;
 import com.dreamhomes.demo.entity.User;
+import com.dreamhomes.demo.repository.PropertyRepo;
 import com.dreamhomes.demo.repository.UserRepo;
 import com.dreamhomes.demo.serviceimpl.UserServiceImpl;
 
@@ -24,6 +26,8 @@ public class ViewController {
 	private UserServiceImpl userService;
 	@Autowired
 	private UserRepo userRepo;
+	@Autowired
+	private PropertyRepo propertyRepo;
 	User user=new User();
 	
 	@GetMapping("/landing")
@@ -105,8 +109,29 @@ public class ViewController {
 		return "sell";
 	}
 	
+	@RequestMapping("/addproperty")
+	public String addProperty(@RequestParam String name,@RequestParam String type,@RequestParam String location, @RequestParam Double price,HttpServletRequest request) {
+		HttpSession session=request.getSession();
+		String email=(String)session.getAttribute("email");
+		String password=(String)session.getAttribute("password");
+		User user=userService.checkAuth(email, password);
+	
+		Property property=new Property();
+		property.setName(name);
+		property.setType(type);
+		property.setLocation(location);
+		property.setPrice(price);
+		property.setUser(user);
+		propertyRepo.save(property);
+		return "sell";
+	}
 	@GetMapping("/buy")
 	public String buy() {
 		return "buy";
 	}
+	@GetMapping("/footer")
+	public String footer() {
+		return "footer";
+	}
+	
 } 

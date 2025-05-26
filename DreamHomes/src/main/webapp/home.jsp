@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %> 
+<%@ page import="com.dreamhomes.demo.entity.Property"%>
+<%@ page import="com.dreamhomes.demo.entity.User"%>
+<%@ page import="org.springframework.ui.Model"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +17,7 @@
   <nav class="navbar">
     <div class="logo">Dream Homes</div>
     <ul class="nav-links">
-      <li><a href="/view/home2">Explore Properties</a></li>
+      <li><a href="/view/properties">Explore Properties</a></li>
       <li><a href="/view/buy">Buy</a></li>
       <li><a href="/view/sell">Sell</a></li>
       <li><a href="/view/about">About</a></li>
@@ -23,12 +27,12 @@
     <a href="/view/profile" class="profile-btn">Profile</a>
   </nav>
 <% 
-String email=(String) session.getAttribute("email"); 
+User user=(User) session.getAttribute("user"); 
 %>
   <!-- 🏡 Banner Section -->
   <header class="banner">
     <div class="banner-content">
-      <h1>Welcome <%= email %></h1>
+      <h1>Welcome <%= user.getName() %></h1>
       <h2>Find Your Dream Property</h2>
       <p>Explore a wide range of properties for sale in your desired location</p>
       <a href="#Property_List" class="banner-btn">Get Started</a>
@@ -63,15 +67,20 @@ String email=(String) session.getAttribute("email");
 
 <!-- 🏘 Property Listings -->
 <section class="property-listings" id="Property_List">
+
+  <%List<Property> property =(List<Property>) request.getAttribute("properties"); %>
+  <%if(property !=null){ %>
+  <% for(Property p:property){%>
   <div class="property-card">
     <img src="/house1.jpg" alt="House 1">
     <div class="property-info">
-      <h3>Modern Villa</h3>
-      <p class="location">Airport Road, Indore</p>
-      <p class="price">₹8,50,000</p>
+      <h3><%= p.getName() %></h3>
+      <p class="location"><%= p.getLocation()%></p>
+      <p class="price"><%= p.getPrice()%></p>
       <p class="desc">A luxurious villa with sea view and private pool.</p>
     </div>
   </div>
+  <%}  }%>
 
   <div class="property-card">
     <img src="/house2.jpg" alt="House 2">

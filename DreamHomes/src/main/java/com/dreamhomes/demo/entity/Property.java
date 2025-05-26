@@ -14,7 +14,7 @@ public class Property {
 	private Integer id;
 	@Column
 	private String name;
-	@Column(unique = true)
+	@Column
 	private String type;
 	@Column
 	private String location;

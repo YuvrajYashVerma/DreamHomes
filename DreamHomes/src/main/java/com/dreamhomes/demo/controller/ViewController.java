@@ -1,5 +1,7 @@
 package com.dreamhomes.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dreamhomes.demo.entity.Property;
 import com.dreamhomes.demo.entity.User;
 import com.dreamhomes.demo.repository.PropertyRepo;
 import com.dreamhomes.demo.repository.UserRepo;
+import com.dreamhomes.demo.serviceimpl.PropertyServiceImpl;
 import com.dreamhomes.demo.serviceimpl.UserServiceImpl;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +28,8 @@ public class ViewController {
 	
 	@Autowired
 	private UserServiceImpl userService;
+	@Autowired
+	private PropertyServiceImpl propertyService;
 	@Autowired
 	private UserRepo userRepo;
 	@Autowired
@@ -55,6 +61,7 @@ public class ViewController {
 		
 		User user=userService.checkAuth(email, password);
 		if(user!=null) {
+			session.setAttribute("user",user);
 			model.addAttribute("user", user);
 			return "home";
 		}
@@ -125,6 +132,18 @@ public class ViewController {
 		propertyRepo.save(property);
 		return "sell";
 	}
+	
+	@GetMapping("/properties")
+	public ModelAndView getAllProperties()
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("home");
+		modelAndView.addObject("properties", propertyService.getAllProperties());
+		List<Property> p = (List<Property>) propertyService.getAllProperties();
+		System.out.println(p);
+		return modelAndView;	
+	}
+	
 	@GetMapping("/buy")
 	public String buy() {
 		return "buy";

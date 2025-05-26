@@ -34,10 +34,10 @@
         <div class="center">
       <h2>Add New Property</h2>
       <form id="addPropertyForm" action="/view/addproperty">
-        <input type="text" placeholder="Property Title" required />
-        <input type="text" placeholder="Type" required />
-        <input type="text" placeholder="Location" required />
-        <input type="number" placeholder="Price ($)" required />
+        <input type="text" placeholder="Property Title" name="name" required />
+        <input type="text" placeholder="Type" name="type" required />
+        <input type="text" placeholder="Location" name="location" required />
+        <input type="number" placeholder="Price ($)" name="price" required />
        <!--  <input type="file" accept="image/*" /> --> 
         <button type="submit">Add Property</button>
       </form>

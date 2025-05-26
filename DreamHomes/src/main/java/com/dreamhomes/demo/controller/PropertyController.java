@@ -25,6 +25,6 @@ public class PropertyController {
 	
 	@GetMapping("/get")
 	public List<Property> getProperty(){
-		return propertyServiceImp.getAllProperty();
+		return propertyServiceImp.getAllProperties();
 	}
 }

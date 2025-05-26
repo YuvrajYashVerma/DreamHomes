@@ -19,7 +19,7 @@ public class PropertyServiceImpl implements PropertyService{
 		return propertyRepo.save(property);
 	}
 	@Override
-	public List<Property> getAllProperty(){
+	public List<Property> getAllProperties(){
 		return propertyRepo.findAll();
 	}
 	@Override

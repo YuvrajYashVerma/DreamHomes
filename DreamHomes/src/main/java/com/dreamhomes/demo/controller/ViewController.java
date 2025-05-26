@@ -33,8 +33,8 @@ public class ViewController {
 	@Autowired
 	private UserRepo userRepo;
 	@Autowired
-	private PropertyRepo  propertyRepo;
-	User user=new User();
+	private PropertyRepo propertyRepo;
+	User user = new User();
 	
 	@GetMapping("/landing")
 	public String landing() {

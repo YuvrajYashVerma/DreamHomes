@@ -8,6 +8,7 @@
   <title>Login - Dream Homes</title>
   <link rel="stylesheet" href="/style.css"></link>
   <link rel="stylesheet" href="/loginstyle.css"></link>
+
 </head>
 <body>
 
@@ -16,8 +17,8 @@
     <div class="logo">Dream Homes</div>
     <ul class="nav-links">
       <li><a href="/view/landing">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/view/landing#about">About</a></li>
+      <li><a href="/view/landing#contact">Contact</a></li>
       <li><a href="/view/login">Login</a></li>
       <li><a href="/view/register">Register</a></li>
     </ul>
@@ -43,7 +44,7 @@
       
       <button type="submit" class="login-btn">Login</button>
       
-      <p class="register-link">Don't have an account? <a href="/view/register">Register</a></p>
+      <p class="register-link">Don't have an account? <a href="/view/register" style="color: #2A8000;">Register</a></p>
     </form>
   </div>
 

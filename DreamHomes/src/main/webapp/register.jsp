@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/loginstyle.css">
 </head>
+
 <body class="login-body">
+
+
   <div class="login-container">
     <h2>Create Your Account</h2>
     <form class="login-form" action="/view/login2" method="post">
@@ -35,7 +38,7 @@
 </div>
       </div>
       <button type="submit" class="login-btn">Register</button>
-      <p class="register-link">Already have an account? <a href="/view/login">Login</a></p>
+      <p class="register-link">Already have an account? <a href="/view/login"  style="color: #2A8000;" >Login</a></p>
     </form>
   </div>
   

@@ -1,9 +1,10 @@
 @charset "UTF-8";
 /* Login Page */
+
 .login-body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(to right, #f4c542, #fcb045);
+  background: #F0FFF0 /*#DBEAFE*/;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +14,7 @@
 .login-container {
   background: white;
   padding: 40px;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 400px;
@@ -52,7 +53,7 @@
 }
 
 .login-btn {
-  background-color: #f4c542;
+  background-color: #03b57b;
   color: white;
   border: none;
   width: 100%;
@@ -65,7 +66,7 @@
 }
 
 .login-btn:hover {
-  background-color: #e0ac2d;
+  background-color: #2A8000;
 }
 
 .register-link {

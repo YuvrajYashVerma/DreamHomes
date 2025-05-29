@@ -43,7 +43,7 @@ User user=(User) session.getAttribute("user");
 <section class="filters">
   <h2>Filter Properties</h2>
   <div class="filter-controls">
-    <select>
+    <select id="type" onclick="applyFilters()">
       <option>All Types</option>
       <option>Apartment</option>
       <option>Villa</option>
@@ -102,5 +102,26 @@ User user=(User) session.getAttribute("user");
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+       function applyFilters(){
+    	   const option=document.getElementById('type').value;
+    	   
+    	   let url='http://localhost:8080/view/allproperty';
+    	   console.log(option)
+    	  
+    	   if(option.length > 0){
+    		   url= url+"?type=" + option;
+    	   }
+    	   
+    	   const xhttp = new XMLHttpRequest();
+    	   xhttp.onload = function(){
+    		   console.log(this.responseText);
+    	   }
+    	   
+    	   xhttp.open("GET", url, true);
+    	   xhttp.send();
+       }
+</script>
 </body>
 </html>

@@ -13,9 +13,9 @@ import com.dreamhomes.demo.entity.Property;
 public interface PropertyRepo extends JpaRepository<Property,Integer>{
 
 	@Query("SELECT u FROM Property u WHERE " 
-	        + "(:price IS NULL OR u.price = :price)"+ "AND" 
-			+ "(:city IS NULL OR u.city = :city)"+ "AND" 
-			+ "(:location IS NULL OR u.location = :location)"+ "AND" 
+			+ "(:price IS NULL OR u.price = :price) AND " 
+			//+ "(:city IS NULL OR u.city = :city) AND " 
+			+ "(:location IS NULL OR u.location = :location) AND " 
 			+ "(:type IS NULL OR u.type = :type)")
-	List<Property> findWithOptionalFilters(@Param("price") Double price,@Param("city") String city, @Param("location") String location, @Param("type") String type);
+	List<Property> findWithOptionalFilters(@Param("price") Double price,/*@Param("city") String city,*/ @Param("location") String location, @Param("type") String type);
 }

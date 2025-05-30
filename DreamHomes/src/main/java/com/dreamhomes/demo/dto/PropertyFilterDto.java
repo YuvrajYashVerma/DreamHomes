@@ -8,7 +8,7 @@ public class PropertyFilterDto {
 	
 	private Double price;
 	
-	private String city;
+	//private String city;
 	
 	private String type;
 	
@@ -40,14 +40,7 @@ public class PropertyFilterDto {
 		this.price = price;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
+	
 	public String getType() {
 		return type;
 	}

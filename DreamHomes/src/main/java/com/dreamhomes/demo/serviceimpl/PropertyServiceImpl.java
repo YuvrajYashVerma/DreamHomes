@@ -26,6 +26,6 @@ public class PropertyServiceImpl implements PropertyService{
 	}
 	@Override
 	public List<Property> getAllPropertyByFilter(PropertyFilterDto filter){
-		return propertyRepo.findWithOptionalFilters(filter.getPrice(), filter.getCity(), filter.getLocation(), filter.getType());
+		return propertyRepo.findWithOptionalFilters(filter.getPrice(), filter.getLocation(), filter.getType());
 	}
 }

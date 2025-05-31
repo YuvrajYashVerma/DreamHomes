@@ -32,9 +32,9 @@
   </header>
 
   <section class="filters"> 
-    <input type="text" placeholder="Search by city...">
-    <select>
-      <option>Property Type</option>
+    <input type="text" placeholder="Search by location...">
+    <select id="type" onclick="applyFilters()">
+    <option>Property Type</option>
       <option>House</option>
       <option>Apartment</option>
       <option>Villa</option>
@@ -47,29 +47,38 @@
     </select>
     <button>Filter</button>
   </section>
-
   <section class="properties">
     <h2>Available Properties</h2>
+   
+    <div class="cards" id=demo>
+      
+    </div>
+  </section>
+
+  <section class="properties">
+    <h2>Sample Properties</h2>
+   
     <div class="cards">
       <div class="card">
-        <img src="https://via.placeholder.com/300x200?text=Luxury+Villa" alt="Luxury Villa">
+        <img src="/images/villa.jpg" alt="Luxury Villa">
         <h3>Luxury Villa</h3>
-        <p>Location: Beverly Hills, CA</p>
-        <p>Price: $2,500,000</p>
+        <p>Location: RalaMandal Hills, Indore</p>
+        <p>Price: ₹2,500,000</p>
         <button class="buy-btn">Buy Now</button>
       </div>
+      
       <div class="card">
-        <img src="https://via.placeholder.com/300x200?text=City+Apartment" alt="City Apartment">
+        <img src="/images/apartment.jpg" alt="City Apartment">
         <h3>Modern Apartment</h3>
-        <p>Location: Manhattan, NY</p>
-        <p>Price: $950,000</p>
+        <p>Location: Maruti Nagar, Indore</p>
+        <p>Price: ₹950,000</p>
         <button class="buy-btn">Buy Now</button>
       </div>
       <div class="card">
-        <img src="https://via.placeholder.com/300x200?text=Family+House" alt="Family House">
+        <img src="/images/house.jpg" alt="Family House">
         <h3>Family House</h3>
-        <p>Location: Austin, TX</p>
-        <p>Price: $650,000</p>
+        <p>Location: Khajarana, Indore</p>
+        <p>Price: ₹650,000</p>
         <button class="buy-btn">Buy Now</button>
       </div>
     </div>
@@ -80,14 +89,48 @@
     <p>You haven't purchased any properties yet.</p>
   </section>
 </section>
-  <script>
-    // Toggle Buy Button Functionality (Placeholder)
+  <script  type="text/javascript">
+    /*// Toggle Buy Button Functionality (Placeholder)
     const buttons = document.querySelectorAll(".buy-btn");
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         alert("Property added to your purchased list (not saved yet).");
       });
-    });
+    });*/
+    function applyFilters(){
+    	
+ 	   const option=document.getElementById('type').value;
+ 	   
+ 	   let url='http://localhost:8080/view/allproperty';
+ 	   console.log(option)
+ 	  
+ 	   if(option.length > 0){
+ 		   url= url+"?type=" + option;
+ 	   }
+ 	   
+ 	   const xhttp = new XMLHttpRequest();
+ 	   xhttp.onload = function(){
+ 		   console.log(this.responseText);
+ 		    
+ 		   myObj = JSON.parse(this.responseText);
+ 		   
+ 		   text = "<div class='cards'>";
+ 		     for (x in myObj) {
+ 		    	text += "<div class='card'>";
+ 		 		text += "<img src='https://via.placeholder.com/300x200?text=Luxury+Villa' alt='PropertyImage'> <h3>" + myObj[x].name + "</h3>";
+ 		 		text += "<p> Location: " + myObj[x].location + "</p>";
+ 				text += "<p> Price: ₹" + myObj[x].price + "</p>";
+ 		 	    text += "<button class='buy-btn'>Buy Now</button></div>";
+ 		     }
+ 		   text += "</div>"
+ 		   document.getElementById("demo").innerHTML = text;
+ 	   
+ 	   }
+ 	   
+ 	   xhttp.open("GET", url, true);
+ 	   xhttp.send();
+    }
   </script>
+  
 </body>
 </html>

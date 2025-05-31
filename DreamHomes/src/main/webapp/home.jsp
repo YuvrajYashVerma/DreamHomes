@@ -39,32 +39,10 @@ User user=(User) session.getAttribute("user");
     </div>
   </header>
 
-  <!-- 🔍 Filter Section -->
-<section class="filters">
-  <h2>Filter Properties</h2>
-  <div class="filter-controls">
-    <select id="type" onclick="applyFilters()">
-      <option>All Types</option>
-      <option>Apartment</option>
-      <option>Villa</option>
-      <option>House</option>
-    </select>
-    <select>
-      <option>All Locations</option>
-      <option>New York</option>
-      <option>California</option>
-      <option>Texas</option>
-    </select>
-    <select>
-      <option>Any Price</option>
-      <option>Under $100,000</option>
-      <option>$100,000 - $300,000</option>
-      <option>$300,000+</option>
-    </select>
-    <button class="filter-btn">Apply Filters</button>
-  </div>
-</section>
 
+<section class="filters">
+  <h2> <a href="/view/properties#property-listings" style="text-decoration: none;color: green;">Explore Properties</a></h2>
+</section>
 <!-- 🏘 Property Listings -->
 <section class="property-listings" id="Property_List">
 
@@ -76,12 +54,12 @@ User user=(User) session.getAttribute("user");
     <div class="property-info">
       <h3><%= p.getName() %></h3>
       <p class="location"><%= p.getLocation()%></p>
-      <p class="price"><%= p.getPrice()%></p>
-      <p class="desc">A luxurious villa with sea view and private pool.</p>
+      <p class="price">₹<%= p.getPrice()%></p>
+      <p class="desc">Description</p>
     </div>
   </div>
   <%}  }%>
-
+  
   <div class="property-card">
     <img src="/house2.jpg" alt="House 2">
     <div class="property-info">
@@ -103,26 +81,60 @@ User user=(User) session.getAttribute("user");
   </div>
 </section>
 
-<script type="text/javascript">
-       function applyFilters(){
-    	   const option=document.getElementById('type').value;
-    	   
-    	   let url='http://localhost:8080/view/allproperty';
-    	   console.log(option)
-    	  
-    	   if(option.length > 0){
-    		   url= url+"?type=" + option;
-    	   }
-    	   
-    	   const xhttp = new XMLHttpRequest();
-    	   xhttp.onload = function(){
-    		   console.log(this.responseText);
-    		   
-    	   }
-    	   
-    	   xhttp.open("GET", url, true);
-    	   xhttp.send();
+<script  type="text/javascript">
+    /*// Toggle Buy Button Functionality (Placeholder)
+    const buttons = document.querySelectorAll(".buy-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        alert("Property added to your purchased list (not saved yet).");
+      });
+    });*/
+    function applyFilters(){
+    	
+ 	   const option=document.getElementById('type').value;
+ 	   const option1=document.getElementById('price').value;
+ 	   const option2=document.getElementById('location').value;
+ 	   
+ 	   let url='http://localhost:8080/view/allproperty';
+ 	   console.log(option)
+ 	  
+ 	  
+       let params = [];
+
+       if (option.length > 0) params.push("type=" + option);
+       if (option1.length > 0) params.push("price=" + option1);
+       if (option2.length > 0) params.push("location=" + option2);
+
+       if (params.length > 0) {
+           url += "?" + params.join("&");
        }
-</script>
+ 	   //if(option.length > 0){
+ 	   //   url= url+"?type=" + option;
+ 	   //}
+ 	   
+ 	   const xhttp = new XMLHttpRequest();
+ 	   xhttp.onload = function(){
+ 		   console.log(this.responseText);
+ 		    
+ 		   myObj = JSON.parse(this.responseText);
+ 		   
+ 		  text = "";
+ 		    for (x in myObj) {
+ 		    	text +=  "<div class='property-card'>  <img src='/house2.jpg' alt='House 2'> <div class='property-info'>";
+ 		 		text += "<h3>" + myObj[x].name + "</h3>";
+ 				text += "<p class='location'>" + myObj[x].location + "</p>";
+ 		 		//text += "<p>" + myObj[x].type + "</p>";
+ 				text += "<p class='price'>" + myObj[x].price + "</p>";
+ 				text += "<p class='desc'>Description"+ +"</p> </div></div>";
+ 		 	}
+ 		text += ""
+ 		   document.getElementById("demo").innerHTML = text;
+ 	   
+ 	   }
+ 	   
+ 	   xhttp.open("GET", url, true);
+ 	   xhttp.send();
+    }
+  </script>
 </body>
 </html>

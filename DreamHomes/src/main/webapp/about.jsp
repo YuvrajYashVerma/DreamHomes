@@ -52,17 +52,17 @@
     <h2>Meet the Team</h2>
     <div class="team-container">
       <div class="team-member">
-        <img src="img/avatar1.png" alt="Guide" />
+        <img src="/images/yogeshbhaiya.jpg" alt="Guide" />
         <h3>Yogesh Bhaiya</h3>
         <p>Guide</p>
       </div>
       <div class="team-member">
-        <img src="img/avatar2.png" alt="Software Developer" />
+        <img src="/images/yuvraj.png" alt="Software Developer" />
         <h3>Yuvraj Verma</h3>
         <p>Software Engineer</p>
       </div>
       <div class="team-member">
-        <img src="img/avatar3.png" alt="FullSupport" />
+        <img src="/images/amitbhaiya.jpg" alt="FullSupport" />
         <h3>Amit Bhaiya</h3>
         <p>Teacher(Faculty)</p>
       </div>

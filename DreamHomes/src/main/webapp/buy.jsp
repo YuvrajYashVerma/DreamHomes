@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="com.dreamhomes.demo.entity.User"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,9 @@
   <link rel="stylesheet" href="/buy.css">
 </head>
 <body>
-
+<% 
+User user=(User) session.getAttribute("user"); 
+%>
   <!-- 🌐 Navbar -->
   <nav class="navbar">
     <div class="logo">Dream Homes</div>
@@ -32,20 +36,31 @@
   </header>
 
   <section class="filters"> 
-    <input type="text" placeholder="Search by location...">
-    <select id="type" onclick="applyFilters()">
-    <option>Property Type</option>
-      <option>House</option>
-      <option>Apartment</option>
-      <option>Villa</option>
+    <select id="location">
+    <option value="">Location</option>
+      <option value="Indore">Indore</option>
+      <option value="Shree Nagar">Shree Nagar</option>
+      <option value="LIG">LIG</option>
+      <option value="Dewas">Dewas</option>
+      <option value="Khajarana">Khajarana</option>
+      <option value="Maruti Nagar">Maruti Nagar</option>
+      <option value="Bhopal">Bhopal</option>
     </select>
-    <select>
-      <option>Price Range</option>
-      <option>Under $500,000</option>
-      <option>$500K - $1M</option>
-      <option>$1M+</option>
+    <select id="type">
+    <option value="">Property Type</option>
+      <option value="House">House</option>
+      <option value="Apartment">Apartment</option>
+      <option value="Villa">Villa</option>
     </select>
-    <button>Filter</button>
+    <select id="price">
+      <option value="">Price Range</option>
+      <option value="500000">500000</option>
+      <option value="1000000">1000000</option>
+      <option value="2000000">2000000</option>
+      <option value="5000000">5000000</option>
+      <option value="2500000">2500000</option>
+    </select>
+    <button onclick="applyFilters()">Filter</button>
   </section>
   <section class="properties">
     <h2>Available Properties</h2>
@@ -100,13 +115,25 @@
     function applyFilters(){
     	
  	   const option=document.getElementById('type').value;
+ 	   const option1=document.getElementById('price').value;
+ 	   const option2=document.getElementById('location').value;
  	   
  	   let url='http://localhost:8080/view/allproperty';
  	   console.log(option)
  	  
- 	   if(option.length > 0){
- 		   url= url+"?type=" + option;
- 	   }
+ 	  
+       let params = [];
+
+       if (option.length > 0) params.push("type=" + option);
+       if (option1.length > 0) params.push("price=" + option1);
+       if (option2.length > 0) params.push("location=" + option2);
+
+       if (params.length > 0) {
+           url += "?" + params.join("&");
+       }
+ 	   //if(option.length > 0){
+ 	   //   url= url+"?type=" + option;
+ 	   //}
  	   
  	   const xhttp = new XMLHttpRequest();
  	   xhttp.onload = function(){

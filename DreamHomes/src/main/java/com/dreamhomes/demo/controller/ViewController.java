@@ -79,8 +79,22 @@ public class ViewController {
 		return "login";
 	}
 	@GetMapping("/home2")
-	public String home2() {
-		return "home";
+	public String home2(HttpServletRequest request,Model model) {
+		
+		HttpSession session=request.getSession();
+		String email=(String)session.getAttribute("email");
+		String password=(String)session.getAttribute("password");
+		System.out.println(email+"  "+password);
+		session.setAttribute("email", email);
+		session.setAttribute("password", password);
+		User user=userService.checkAuth(email, password);
+		    if(user!=null){
+		    	session.setAttribute("user",user);
+			    model.addAttribute("user", user);
+			    return "home";
+		    }
+	    
+		return "landing";
 	}
 	@GetMapping("/profile")
 	public String profile(HttpServletRequest request,Model model) {
@@ -138,7 +152,7 @@ public class ViewController {
 	
 	@GetMapping("/properties")
 	public ModelAndView getAllProperties()
-	{
+	{	
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home");
 		modelAndView.addObject("properties", propertyService.getAllProperties());
@@ -164,5 +178,8 @@ public class ViewController {
 	public String footer() {
 		return "footer";
 	}
-	
+	@GetMapping("/*")
+	public String errorPage() {
+		return "404";
+	}
 } 

@@ -42,7 +42,7 @@
         <div class="info-card">
           <h3>User ID</h3>
           <p><%= user.getId() %></p>
-        </div>
+       </div>
         <div class="info-card">
           <h3>Name</h3>
           <p><%= user.getName() %></p>
